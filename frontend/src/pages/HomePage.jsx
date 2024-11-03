@@ -174,7 +174,7 @@ const HomePage = () => {
       <button id='calculate' onClick={calculate}>Calculate</button>
       
       {calculationResult && (
-  <div>
+  <div id='calculation-container' className='input-container'>
     <h3>Calculation Result:</h3>
     {typeof calculationResult === 'string' ? (
       <p>{calculationResult}</p>
@@ -182,7 +182,9 @@ const HomePage = () => {
       <div>
         <p>Total Width with Margins: {calculationResult.totalWidthMargins}</p>
         <p>Width Difference: {calculationResult.widthDifference}</p>
-        <p>Frame Spacing: {calculationResult.frameSpacing}</p>
+        <div id='result'>
+          <p>Frame Spacing: {calculationResult.frameSpacing}</p>
+        </div>
       </div>
     )}
   </div>

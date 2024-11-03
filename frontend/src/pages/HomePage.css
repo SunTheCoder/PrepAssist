@@ -1,7 +1,7 @@
-.page-container {
+body {
  background-color: #121212;
  color: white;
- height: 100vh
+ 
 }
 h1 {
     margin: 0;
@@ -37,7 +37,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;;
-    height: 630px
+    /* height: 630px */
     
 }
 #add-frame-container {
@@ -75,6 +75,7 @@ button {
     color: black;
     border: none;
     border-radius: 2.5px;
+    margin-bottom: 35px;
     
 }
 #calculate:hover {
@@ -82,4 +83,12 @@ button {
     background-color: #333333;
     border: 1px solid #444444;
     color: white
+}
+#calculation-container {
+    padding-bottom: 20px;
+}
+#result {
+    background-color: #575757;
+    margin: 0 65px;
+    padding: 1px;
 }
