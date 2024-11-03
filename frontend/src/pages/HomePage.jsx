@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFrames, addFrame } from '../features/frameSlice';
 import FrameDisplay from '../components/frameDisplay';
 import { setLength, setMargin, setDesiredGap } from '../features/wallSlice';
+import './HomePage.css';
 
 
 const HomePage = () => {
@@ -110,7 +111,7 @@ const HomePage = () => {
   
 
   return (
-    <div>
+    <div className='page-container'>
       <h1>PrepAssist</h1>
       <h2>Frame Hanging Assistance</h2>
       <div>
@@ -147,18 +148,20 @@ const HomePage = () => {
           placeholder="Width"
           value={newFrame.width}
           onChange={handleFrameInputChange}
-        />
+          />
+          <br/>
         <input
           type="number"
           name="height"
           placeholder="Height"
           value={newFrame.height}
           onChange={handleFrameInputChange}
-        />
-        <button onClick={handleAddFrame}>Add Frame</button>
+          />
+          <br/>
+        <button id='add-frame' onClick={handleAddFrame}>Add Frame</button>
       </div>
       <FrameDisplay frames={frames} />
-      <button onClick={calculate}>Calculate</button>
+      <button id='calculate' onClick={calculate}>Calculate</button>
 
       {calculationResult && (
   <div>
