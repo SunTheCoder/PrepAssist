@@ -113,16 +113,22 @@ const HomePage = () => {
   return (
     <div className='page-container'>
       <h1>PrepAssist</h1>
+
+      <div className='background-container'>
       <h2>Frame Hanging Assistance</h2>
       <div>
+
+        <div id='wall-container' className='input-container'>
         <h3>Wall Length</h3>
-        <input
-          type="number"
-          name="wallLength"
-          placeholder="Wall Length"
-          value={wall.length}
-          onChange={handleGeneralInputChange}
-        />
+          <input
+            type="number"
+            name="wallLength"
+            placeholder="Wall Length"
+            value={wall.length}
+            onChange={handleGeneralInputChange}
+          />
+        
+        
         <h3>Margin</h3>
         <input
           type="number"
@@ -131,6 +137,7 @@ const HomePage = () => {
           value={wall.margin}
           onChange={handleGeneralInputChange}
         />
+        
         <h3>Desired Gap</h3>
         <input
           type="number"
@@ -139,8 +146,9 @@ const HomePage = () => {
           value={wall.desiredGap}
           onChange={handleGeneralInputChange}
         />
+        </div>
         {/* <button onClick={handleWallSpecs}>Add WallSpecs</button> */}
-
+        <div id='add-frame-container' className='input-container'>
         <h3>Add a New Frame</h3>
         <input
           type="number"
@@ -151,6 +159,7 @@ const HomePage = () => {
           />
           <br/>
         <input
+        id='height-input'
           type="number"
           name="height"
           placeholder="Height"
@@ -159,10 +168,11 @@ const HomePage = () => {
           />
           <br/>
         <button id='add-frame' onClick={handleAddFrame}>Add Frame</button>
+        </div>
       </div>
       <FrameDisplay frames={frames} />
       <button id='calculate' onClick={calculate}>Calculate</button>
-
+      
       {calculationResult && (
   <div>
     <h3>Calculation Result:</h3>
@@ -176,8 +186,9 @@ const HomePage = () => {
       </div>
     )}
   </div>
+  
 )}
-
+    </div>
     </div>
   );
 };

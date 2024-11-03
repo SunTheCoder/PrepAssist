@@ -1,28 +1,85 @@
 .page-container {
-
+ background-color: #121212;
+ color: white;
+ height: 100vh
+}
+h1 {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+h3 {
+    margin: 0;
+}
+input {
+    margin: 10px
 }
 
 button {
-    margin-bottom: 30px
+    /* margin-bottom: 30px */
 }
-
-.home-page-add-frame {
+#height-input {
+    /* padding-top: 0px; */
+    margin-top: 0;
+}
+.input-container {
+    background-color: #252525;
+    width: 300px;
+    /* padding-bottom: 30px; */
+    /* margin: 30px */
+    padding: 30px;
+    border: solid 1px #333333;
+    margin-bottom: 30px;
+    
+}
+.background-container {
+    background-color: #1E1E1E;
     display: flex;
     flex-direction: column;
+    align-items: center;;
+    height: 630px
+    
+}
+#add-frame-container {
+
+
+    padding-bottom: 0px;
+}
+.home-page-add-frame {
+    
 }
 
 #add-frame {
-    background-color: indigo;
-    color: white;
+    /* background-color: indigo; */
+    background-color: #03DAC5;
+    color: black;
     border: none;
     border-radius: 2.5px;
+    margin-bottom: 30px
 
 }
 
+#add-frame:hover {
+    cursor: pointer;
+    background-color: #333333;
+    border: 1px solid #444444;
+    color: white
+}
+#wall-container {
+    padding-bottom: 20px
+}
+
 #calculate {
-    background-color: red;
-    color: white;
+    /* background-color: red; */
+    background-color: #03DAC5;
+    color: black;
     border: none;
     border-radius: 2.5px;
-
+    
+}
+#calculate:hover {
+    cursor: pointer;
+    background-color: #333333;
+    border: 1px solid #444444;
+    color: white
 }
