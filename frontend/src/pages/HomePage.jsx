@@ -74,25 +74,27 @@ const HomePage = () => {
   
 
   const calculate = () => {
-    let numGaps = frames.length + 1;
+    let numGaps = frames.length - 1;
     let totalWidth = 0;
     let totalWidthGap = 0;
 
     for (let frame of frames) {
       if (frame) {
         totalWidth += frame.width;
-        totalWidthGap += frame.width + wall.desiredGap / 2;
+        // totalWidthGap += frame.width + wall.desiredGap / 2;
       }
     }
+    totalWidthGap = totalWidth + ((Array.from(frames).length - 1) * wall.desiredGap);
+    console.log(totalWidthGap);
 
-    if (totalWidth + wall.margin * 2 > wall.length || totalWidthGap + wall.margin * 2 > wall.length) {
+    if (totalWidth + (wall.margin * 2) >= wall.length || totalWidthGap + (wall.margin * 2) >= wall.length) {
       console.log('Not enough space for all frames');
       setCalculationResult('Not enough space for all frames');
       return;
     }
   
-    let totalWidthMargins = totalWidthGap + margin * 2;
-    let widthDifference = wall.length - totalWidthMargins;
+    let totalWidthMargins = wall.length - (margin * 2)
+    let widthDifference = totalWidthMargins - totalWidthGap
     let frameSpacing = widthDifference / numGaps;
   
     const result = {
