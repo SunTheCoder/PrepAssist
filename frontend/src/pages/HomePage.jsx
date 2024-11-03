@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFrames, addFrame } from '../features/frameSlice';
+import { addFrame } from '../features/frameSlice';
 import FrameDisplay from '../components/frameDisplay';
 import { setLength, setMargin, setDesiredGap } from '../features/wallSlice';
 import './HomePage.css';
@@ -11,9 +11,9 @@ const HomePage = () => {
   const frames = useSelector((state) => state.frame.frames);
   const wall = useSelector((state) => state.wall)
   const [newFrame, setNewFrame] = useState({ width: '', height: '' });
-  const [wallLength, setWallLength] = useState('');
+  const [setWallLength] = useState('');
   const [margin, setWallMargin] = useState('');
-  const [desiredGap, setWallDesiredGap] = useState('');
+  const [setWallDesiredGap] = useState('');
   const [calculationResult, setCalculationResult] = useState(null);
 
   console.log(wall)
