@@ -10,9 +10,8 @@ const frameSlice = createSlice({
       state.frames = action.payload; // Replace the entire frames object with new data
     },
     addFrame: (state, action) => {
-      const { frame } = action.payload; // Assume payload has { key: 'frame_one', frame: { width: 10, height: 15 } }
-      state.frames.push(frame) // Add or update a specific frame in the object
-      console.log('state',state.frames)
+      const frame = action.payload; // Assume payload has { key: 'frame_one', frame: { width: 10, height: 15 } }
+      state.frames.push(frame); // Add or update a specific frame in the object
     },
     updateFrame: (state, action) => {
       const { key, newDimensions } = action.payload;

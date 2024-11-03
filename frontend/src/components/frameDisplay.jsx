@@ -2,14 +2,16 @@ import React from 'react';
 
 
 const FrameDisplay = ({ frames }) => {
+  console.log(frames)
 
-  const formattedFrames = Array.from(frames)
+  // const formattedFrames = Array.from(frames)
   return (
     <div>
-      {formattedFrames.map((frame, index) => (
+      {frames.map((frame, index) => (
         <div key={index}>
-          <p>Frame Width: {frame.width}</p>
-          <p>Frame Height: {frame.height}</p>
+          <h3>Frame {index + 1}:</h3>
+          <p>Frame Width: {frame.width} | Frame Height: {frame.height}</p>
+          
         </div>
       ))}
     </div>
