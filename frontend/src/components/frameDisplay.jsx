@@ -10,7 +10,7 @@ const FrameDisplay = ({ frames }) => {
       {frames.map((frame, index) => (
         <div key={index}>
           <h3>Frame {index + 1}:</h3>
-          <p>Frame Width: {frame.width} | Frame Height: {frame.height}</p>
+          <p>Frame Width: {frame.width}" | Frame Height: {frame.height}"</p>
           
         </div>
       ))}
