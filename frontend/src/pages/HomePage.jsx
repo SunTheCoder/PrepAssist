@@ -206,7 +206,7 @@ const HomePage = () => {
 
       {frames.length > 1 && (
         <div>
-          <button id='add-group' onClick={handleAddGroup}>Add Group</button>
+          <button id='add-group' onClick={handleAddGroup}>Add Frame Group</button>
           
           
         </div>

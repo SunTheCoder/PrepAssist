@@ -20,7 +20,7 @@ const GroupDisplay = ({ groups }) => {
     );
   }
 
-  return <p>No groups available</p>; // Fallback if there are no groups
+  
 };
 
 export default GroupDisplay;
