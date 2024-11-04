@@ -14,9 +14,9 @@ const HomePage = () => {
   let groups = useSelector((state) => state.group.groups);
   const wall = useSelector((state) => state.wall)
   const [newFrame, setNewFrame] = useState({ width: '', height: '' });
-  const [setWallLength] = useState('');
-  const [margin, setWallMargin] = useState('');
-  const [setWallDesiredGap] = useState('');
+  // const [setWallLength] = useState('');
+  // const [margin, setWallMargin] = useState('');
+  // const [setWallDesiredGap] = useState('');
   const [calculationResult, setCalculationResult] = useState(null);
 
   console.log(wall)
@@ -40,18 +40,18 @@ const HomePage = () => {
   
     switch (name) {
       case 'wallLength':
-        setWallLength(numericValue);
+        // setWallLength(numericValue);
         dispatch(setLength(numericValue));
-        console.log('wall specs', wall)
+        // console.log('wall specs', wall)
         break;
         case 'margin':
-          setWallMargin(numericValue);
+          // setWallMargin(numericValue);
           dispatch(setMargin(numericValue));
           console.log('wall specs', wall)
           
           break;
           case 'desiredGap':
-            setWallDesiredGap(numericValue);
+            // setWallDesiredGap(numericValue);
             dispatch(setDesiredGap(numericValue));
             
             console.log('wall specs', wall.desiredGap)
@@ -93,7 +93,8 @@ const HomePage = () => {
       setCalculationResult('No frames found');
       return;
     } else if (frames.length === 1) {
-
+      let singleFrameDifference = (wall.length - frames[0].width) / 2
+      return singleFrameDifference
     } else if (frames.length > 1) {
 
       let numGaps = frames.length - 1;
@@ -115,7 +116,7 @@ const HomePage = () => {
         return;
       }
       
-      let totalWidthMargins = wall.length - (margin * 2)
+      let totalWidthMargins = wall.length - (wall.margin * 2)
       let widthDifference = totalWidthMargins - totalWidthGap
       let frameSpacing = widthDifference / numGaps;
       
