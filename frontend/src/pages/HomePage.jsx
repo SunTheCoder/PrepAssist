@@ -113,7 +113,9 @@ const HomePage = () => {
   return (
     <div className='page-container'>
       <h1>PrepAssist</h1>
-
+      
+      
+      
       <div className='background-container'>
       <h2>Frame Hanging Assistance</h2>
       <div>
@@ -191,6 +193,8 @@ const HomePage = () => {
   
 )}
     </div>
+    <h4>A project by Sun English Jr.</h4>
+    <h5>BETA</h5>
     </div>
   );
 };
