@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFrame } from '../features/frameSlice';
+import { addFrame, clearFrames } from '../features/frameSlice';
 import FrameDisplay from '../components/frameDisplay';
 import { setLength, setMargin, setDesiredGap } from '../features/wallSlice';
+import { setGroup } from '../features/groupSlice';
 import './HomePage.css';
 
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const frames = useSelector((state) => state.frame.frames);
+  let frames = useSelector((state) => state.frame.frames);
   const wall = useSelector((state) => state.wall)
   const [newFrame, setNewFrame] = useState({ width: '', height: '' });
   const [setWallLength] = useState('');
@@ -71,41 +72,60 @@ const HomePage = () => {
     }
   };
 
+  const handleAddGroup = () => {
+    
+    if (frames) {
+      dispatch(setGroup(frames))
+      dispatch(clearFrames())
+    }
+  }
   
   
 
   const calculate = () => {
-    let numGaps = frames.length - 1;
-    let totalWidth = 0;
-    let totalWidthGap = 0;
 
-    for (let frame of frames) {
-      if (frame) {
-        totalWidth += frame.width;
-        // totalWidthGap += frame.width + wall.desiredGap / 2;
-      }
-    }
-    totalWidthGap = totalWidth + ((Array.from(frames).length - 1) * wall.desiredGap);
-    console.log(totalWidthGap);
-
-    if (totalWidth + (wall.margin * 2) >= wall.length || totalWidthGap + (wall.margin * 2) >= wall.length) {
-      console.log('Not enough space for all frames');
-      setCalculationResult('Not enough space for all frames');
+    //check on groups somehow...
+    // Check if there are any frames
+    if (frames.length === 0) {
+      console.log('No frames found');
+      setCalculationResult('No frames found');
       return;
+    } else if (frames.length === 1) {
+
+    } else if (frames.length > 1) {
+
+      let numGaps = frames.length - 1;
+      let totalWidth = 0;
+      let totalWidthGap = 0;
+      
+      for (let frame of frames) {
+        if (frame) {
+          totalWidth += frame.width;
+          // totalWidthGap += frame.width + wall.desiredGap / 2;
+        }
+      }
+      totalWidthGap = totalWidth + ((Array.from(frames).length - 1) * wall.desiredGap);
+      console.log(totalWidthGap);
+      
+      if (totalWidth + (wall.margin * 2) >= wall.length || totalWidthGap + (wall.margin * 2) >= wall.length) {
+        console.log('Not enough space for all frames');
+        setCalculationResult('Not enough space for all frames');
+        return;
+      }
+      
+      let totalWidthMargins = wall.length - (margin * 2)
+      let widthDifference = totalWidthMargins - totalWidthGap
+      let frameSpacing = widthDifference / numGaps;
+      
+      const result = {
+        totalWidthMargins,
+        widthDifference,
+        frameSpacing,
+      };
+      
+      console.log('Calculation result:', result);
+      setCalculationResult(result); // Set the result in the state
     }
-  
-    let totalWidthMargins = wall.length - (margin * 2)
-    let widthDifference = totalWidthMargins - totalWidthGap
-    let frameSpacing = widthDifference / numGaps;
-  
-    const result = {
-      totalWidthMargins,
-      widthDifference,
-      frameSpacing,
-    };
-  
-    console.log('Calculation result:', result);
-    setCalculationResult(result); // Set the result in the state
   };
 
   
@@ -173,6 +193,7 @@ const HomePage = () => {
         </div>
       </div>
       <FrameDisplay frames={frames} />
+      <button id='add-group' onClick={handleAddGroup}>Add Group</button>
       <button id='calculate' onClick={calculate}>Calculate</button>
       
       {calculationResult && (
