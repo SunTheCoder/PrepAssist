@@ -147,6 +147,7 @@ const HomePage = () => {
       
       <div className='background-container'>
       <h2>Frame Hanging Assistance</h2>
+      <h4>*Measurements assumed to be in inches*</h4>
       <div>
 
         <div id='wall-container' className='input-container'>
@@ -216,27 +217,30 @@ const HomePage = () => {
 
       {calculationResult && (
   <div id='calculation-container' className='input-container'>
-    <h3>Calculation Result:</h3>
+    <h3>Calculation Results:</h3>
     {typeof calculationResult === 'string' ? (
       <p>{calculationResult}</p>
     ) : (
       <div>
+        {wall.margin > 0 && (
+          <p>Wall Margin left and right: {wall.margin}"</p>
+        )}
         {calculationResult.totalWidthMargins && (
-  <p>Total Width with Margins: {calculationResult.totalWidthMargins}"</p>
-)}
-{calculationResult.widthDifference && (
-  <p>Width Difference: {calculationResult.widthDifference}"</p>
-)}
-{calculationResult.frameSpacing && frames.length > 1 && (
-  <div id='result'>
-    <p>Frame Spacing: {calculationResult.frameSpacing}"</p>
-  </div>
-)}
-{calculationResult.frameSpacing && frames.length === 1 && (
-  <div id='result'>
-    <p>Frame Spacing Left and Right: {calculationResult.frameSpacing}"</p>
-  </div>
-)}
+          <p>Total Width with Margins: {calculationResult.totalWidthMargins}"</p>
+        )}
+        {calculationResult.widthDifference && (
+          <p>Width Difference: {calculationResult.widthDifference}"</p>
+        )}
+        {calculationResult.frameSpacing && frames.length > 1 && (
+          <div id='result'>
+            <p>Frame Spacing: {calculationResult.frameSpacing}"</p>
+          </div>
+        )}
+        {calculationResult.frameSpacing && frames.length === 1 && (
+          <div id='result'>
+            <p>Frame Spacing Left and Right: {calculationResult.frameSpacing}"</p>
+          </div>
+        )}
       </div>
     )}
   </div>
