@@ -93,11 +93,17 @@ const HomePage = () => {
       setCalculationResult('No frames found');
       return;
     } else if (frames.length === 1) {
-      let singleFrameDifference = (wall.length - frames[0].width) / 2
-      return singleFrameDifference
+      
+      let frameSpacing = (wall.length - frames[0].width) / 2
+      const result = {
+        
+        
+        frameSpacing: frameSpacing + "\""
+      };
+      setCalculationResult(result)
     } else if (frames.length > 1) {
 
-      let numGaps = frames.length - 1;
+      let numGaps = wall.margin > 0 ? frames.length - 1 : frames.length + 1; // if  margin greater than 0; gaps are berween paintings only. otherwise, space evenly
       let totalWidth = 0;
       let totalWidthGap = 0;
       
@@ -116,9 +122,9 @@ const HomePage = () => {
         return;
       }
       
-      let totalWidthMargins = wall.length - (wall.margin * 2)
-      let widthDifference = totalWidthMargins - totalWidthGap
-      let frameSpacing = widthDifference / numGaps;
+      let totalWidthMargins = (wall.length - (wall.margin * 2)) + "\""
+      let widthDifference = (totalWidthMargins - totalWidthGap) + "\""
+      let frameSpacing = (widthDifference / numGaps) + "\"" ;
       
       const result = {
         totalWidthMargins,
