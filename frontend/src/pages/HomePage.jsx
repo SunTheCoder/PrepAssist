@@ -19,6 +19,15 @@ const HomePage = () => {
   // const [setWallDesiredGap] = useState('');
   const [calculationResult, setCalculationResult] = useState(null);
 
+  const [errors, setErrors] = useState({
+    wallLength: '',
+    margin: '',
+    desiredGap: '',
+    frameWidth: ''
+  });
+
+  
+
   console.log(wall)
 
 
@@ -27,6 +36,20 @@ const HomePage = () => {
   // Update frame input fields
   const handleFrameInputChange = (e) => {
     const { name, value } = e.target;
+    const numericValue = Number(value); // Convert the value to a number for consistency
+
+    if (name === 'wallLength' && !numericValue) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        wallLength: 'Length required',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: '',
+      }));
+    }
+  
     setNewFrame({
       ...newFrame,
       [name]: value,
@@ -37,6 +60,18 @@ const HomePage = () => {
   const handleGeneralInputChange = (e) => {
     const { name, value } = e.target;
     const numericValue = Number(value); // Convert the value to a number for consistency
+
+    if (name === 'wallLength' && !numericValue) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        wallLength: 'Length required',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: '',
+      }));
+    }
   
     switch (name) {
       case 'wallLength':
@@ -160,7 +195,8 @@ const HomePage = () => {
             onChange={handleGeneralInputChange}
           />
         
-        
+        {errors.wallLength && <p style={{ color: 'red', fontSize: 'small', marginBottom: 5, marginTop: 0}}>{errors.wallLength}</p>}
+
         <h3>Margin</h3>
         <input
           type="number"
@@ -189,6 +225,7 @@ const HomePage = () => {
           value={newFrame.width}
           onChange={handleFrameInputChange}
           />
+          {errors.frameWidth && <p style={{ color: 'red', fontSize: 'small', marginBottom: 0, marginTop: 0}}>{errors.frameWidth}</p>}
           <br/>
         <input
         id='height-input'
