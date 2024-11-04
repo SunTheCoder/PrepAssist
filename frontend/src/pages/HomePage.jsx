@@ -122,9 +122,9 @@ const HomePage = () => {
         return;
       }
       
-      let totalWidthMargins = (wall.length - (wall.margin * 2)) + "\""
-      let widthDifference = (totalWidthMargins - totalWidthGap) + "\""
-      let frameSpacing = (widthDifference / numGaps) + "\"" ;
+      let totalWidthMargins = (wall.length - (wall.margin * 2)) 
+      let widthDifference = (totalWidthMargins - totalWidthGap) 
+      let frameSpacing = (widthDifference / numGaps)  
       
       const result = {
         totalWidthMargins,
@@ -221,11 +221,22 @@ const HomePage = () => {
       <p>{calculationResult}</p>
     ) : (
       <div>
-        <p>Total Width with Margins: {calculationResult.totalWidthMargins}</p>
-        <p>Width Difference: {calculationResult.widthDifference}</p>
-        <div id='result'>
-          <p>Frame Spacing: {calculationResult.frameSpacing}</p>
-        </div>
+        {calculationResult.totalWidthMargins && (
+  <p>Total Width with Margins: {calculationResult.totalWidthMargins}"</p>
+)}
+{calculationResult.widthDifference && (
+  <p>Width Difference: {calculationResult.widthDifference}"</p>
+)}
+{calculationResult.frameSpacing && frames.length > 1 && (
+  <div id='result'>
+    <p>Frame Spacing: {calculationResult.frameSpacing}"</p>
+  </div>
+)}
+{calculationResult.frameSpacing && frames.length === 1 && (
+  <div id='result'>
+    <p>Frame Spacing Left and Right: {calculationResult.frameSpacing}"</p>
+  </div>
+)}
       </div>
     )}
   </div>
