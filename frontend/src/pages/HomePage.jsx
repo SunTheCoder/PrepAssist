@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFrame, clearFrames } from '../features/frameSlice';
 import FrameDisplay from '../components/frameDisplay';
+import GroupDisplay from '../components/groupDisplay';
 import { setLength, setMargin, setDesiredGap } from '../features/wallSlice';
 import { setGroup } from '../features/groupSlice';
 import './HomePage.css';
@@ -10,6 +11,7 @@ import './HomePage.css';
 const HomePage = () => {
   const dispatch = useDispatch();
   let frames = useSelector((state) => state.frame.frames);
+  let groups = useSelector((state) => state.group.groups);
   const wall = useSelector((state) => state.wall)
   const [newFrame, setNewFrame] = useState({ width: '', height: '' });
   const [setWallLength] = useState('');
@@ -193,9 +195,18 @@ const HomePage = () => {
         </div>
       </div>
       <FrameDisplay frames={frames} />
-      <button id='add-group' onClick={handleAddGroup}>Add Group</button>
-      <button id='calculate' onClick={calculate}>Calculate</button>
-      
+      <GroupDisplay groups={groups} />
+
+      {frames.length > 1 && (
+        <div>
+          <button id='add-group' onClick={handleAddGroup}>Add Group</button>
+          
+          
+        </div>
+      )}
+
+        <button id='calculate' onClick={calculate}>Calculate</button>
+
       {calculationResult && (
   <div id='calculation-container' className='input-container'>
     <h3>Calculation Result:</h3>
