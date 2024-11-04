@@ -72,6 +72,21 @@ button {
 #wall-container {
     padding-bottom: 20px
 }
+#add-group {
+    
+    background-color: #03DAC5;
+    color: black;
+    border: none;
+    border-radius: 2.5px;
+    margin-bottom: 30px;
+}
+
+#add-group:hover {
+    cursor: pointer;
+    background-color: #333333;
+    border: 1px solid #444444;
+    color: white
+}
 
 #calculate {
     /* background-color: red; */
