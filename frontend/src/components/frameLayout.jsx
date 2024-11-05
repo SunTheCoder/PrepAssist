@@ -32,6 +32,8 @@ const FrameLayout = () => {
     height: frame.height,
     area: frame.width * frame.height
   }));
+
+  console.log(framesWithArea)
   
   // Sort frames by area
   framesWithArea.sort((a, b) => a.area - b.area);
