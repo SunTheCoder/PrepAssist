@@ -14,6 +14,7 @@ const HomePage = () => {
   let groups = useSelector((state) => state.group.groups);
   const wall = useSelector((state) => state.wall)
   const [newFrame, setNewFrame] = useState({ width: '', height: '' });
+  const [newWallLength, setNewWallLength] = useState('');
   // const [setWallLength] = useState('');
   // const [margin, setWallMargin] = useState('');
   // const [setWallDesiredGap] = useState('');
@@ -23,7 +24,8 @@ const HomePage = () => {
     wallLength: '',
     margin: '',
     desiredGap: '',
-    frameWidth: ''
+    frameWidth: '',
+    frameHeight: ''
   });
 
   
@@ -38,15 +40,29 @@ const HomePage = () => {
     const { name, value } = e.target;
     const numericValue = Number(value); // Convert the value to a number for consistency
 
-    if (name === 'wallLength' && !numericValue) {
+    if (name === 'width' && (isNaN(numericValue) || value === '')) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        wallLength: 'Length required',
+        frameWidth: 'Width required',
       }));
-    } else {
+    } else if (name === 'width') {
+      // Clear the error specifically for frameWidth when input is valid
       setErrors((prevErrors) => ({
         ...prevErrors,
-        [name]: '',
+        frameWidth: '',
+      }));
+    }
+
+    if (name === 'height' && (isNaN(numericValue) || value === '')) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        frameHeight: 'Height required',
+      }));
+    } else if (name === 'height') {
+      // Clear the error specifically for frameWidth when input is valid
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        frameHeight: '',
       }));
     }
   
@@ -61,16 +77,22 @@ const HomePage = () => {
     const { name, value } = e.target;
     const numericValue = Number(value); // Convert the value to a number for consistency
 
-    if (name === 'wallLength' && !numericValue) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        wallLength: 'Length required',
-      }));
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [name]: '',
-      }));
+    if (name === 'wallLength') {
+      // Update the temporary local state
+      setNewWallLength(value);
+  
+      // Clear errors as the user types
+      if (value === '') {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          wallLength: 'Length required',
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          wallLength: '',
+        }));
+      }
     }
   
     switch (name) {
@@ -93,6 +115,14 @@ const HomePage = () => {
         break;
       default:
         break;
+    }
+  };
+
+  const handleWallLengthBlur = () => {
+    // Convert to number and update Redux store on blur
+    const numericValue = Number(newWallLength);
+    if (!isNaN(numericValue) && numericValue > 0) {
+      dispatch(setLength(numericValue));
     }
   };
 
@@ -187,13 +217,15 @@ const HomePage = () => {
 
         <div id='wall-container' className='input-container'>
         <h3>Wall Length</h3>
-          <input
-            type="number"
-            name="wallLength"
-            placeholder="Wall Length"
-            value={wall.length}
-            onChange={handleGeneralInputChange}
-          />
+        <input
+          type="text" // Change to text to avoid automatic zeroes
+          name="wallLength"
+          placeholder="Wall Length"
+          value={newWallLength}
+          onChange={handleGeneralInputChange}
+          onBlur={handleWallLengthBlur}
+        />
+
         
         {errors.wallLength && <p style={{ color: 'red', fontSize: 'small', marginBottom: 5, marginTop: 0}}>{errors.wallLength}</p>}
 
@@ -229,12 +261,13 @@ const HomePage = () => {
           <br/>
         <input
         id='height-input'
-          type="number"
-          name="height"
-          placeholder="Height"
-          value={newFrame.height}
-          onChange={handleFrameInputChange}
-          />
+        type="number"
+        name="height"
+        placeholder="Height"
+        value={newFrame.height}
+        onChange={handleFrameInputChange}
+        />
+        {errors.frameHeight && <p style={{ color: 'red', fontSize: 'small', marginBottom: 0, marginTop: 0}}>{errors.frameHeight}</p>}
           <br/>
         <button id='add-frame' onClick={handleAddFrame}>Add Frame</button>
         </div>
