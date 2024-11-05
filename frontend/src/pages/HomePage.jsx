@@ -320,7 +320,9 @@ const HomePage = () => {
   </div>
   
   )}
-  <FrameLayout />
+  <div id='frame-layout'>
+      <FrameLayout />
+  </div>
     </div>
     <h4>A project by Sun English Jr.</h4>
     <h5>BETA</h5>

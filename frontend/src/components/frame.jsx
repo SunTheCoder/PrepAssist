@@ -24,6 +24,35 @@ const FrameLayout = () => {
   const wallWidth = wall.length * SCALE_FACTOR; // Scale wall length for display
   const wallMargin = wall.margin * SCALE_FACTOR; // Scale margin
 
+  let currFrames = frames;
+
+  // Calculate area for each frame and store width, height, and area in an array of objects
+  let framesWithArea = currFrames.map((frame) => ({
+    width: frame.width,
+    height: frame.height,
+    area: frame.width * frame.height
+  }));
+  
+  // Sort frames by area
+  framesWithArea.sort((a, b) => a.area - b.area);
+  
+  let evens = [];
+  let odds = [];
+  
+  // Separate into evens and odds by index
+  framesWithArea.forEach((frame, i) => {
+    if (i % 2 === 0) evens.push(frame);
+    else odds.push(frame);
+  });
+  
+  // Reverse the odd-indexed group
+  odds.reverse();
+  
+  // Merge the even and odd groups
+  let merged = evens.concat(odds);
+  
+  console.log('Merged Frames:', merged);
+  
   return (
     <div
       style={{
@@ -39,7 +68,8 @@ const FrameLayout = () => {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: `${wall.desiredGap * SCALE_FACTOR}px` }}>
-        {frames.map((frame) => (
+
+        {merged.map((frame) => (
           <Frame key={frame.id} width={frame.width} height={frame.height} />
         ))}
       </div>
