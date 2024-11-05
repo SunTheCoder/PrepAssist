@@ -4,6 +4,7 @@ import { addFrame, clearFrames } from '../features/frameSlice';
 import FrameDisplay from '../components/frameDisplay';
 import GroupDisplay from '../components/groupDisplay';
 import { setLength, setMargin, setDesiredGap } from '../features/wallSlice';
+import { setArrangement } from '../features/arrangementSlice';
 import { setGroup } from '../features/groupSlice';
 import './HomePage.css';
 
@@ -143,6 +144,7 @@ const HomePage = () => {
     
     if (frames) {
       dispatch(setGroup(frames))
+      dispatch(setArrangement(frames))
       dispatch(clearFrames())
     }
   }
@@ -308,7 +310,7 @@ const HomePage = () => {
         )}
         {calculationResult.frameSpacing && frames.length === 1 && (
           <div id='result'>
-            <p>Frame Spacing Left and Right: {calculationResult.frameSpacing}"</p>
+            <p>Frame Spacing Left and Right: {calculationResult.frameSpacing}</p>
           </div>
         )}
       </div>
