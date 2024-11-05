@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFrame, clearFrames } from '../features/frameSlice';
 import FrameDisplay from '../components/frameDisplay';
 import GroupDisplay from '../components/groupDisplay';
+import FrameLayout from '../components/frame';
 import { setLength, setMargin, setDesiredGap } from '../features/wallSlice';
 import { setArrangement } from '../features/arrangementSlice';
 import { setGroup } from '../features/groupSlice';
@@ -315,9 +316,11 @@ const HomePage = () => {
         )}
       </div>
     )}
+
   </div>
   
-)}
+  )}
+  <FrameLayout />
     </div>
     <h4>A project by Sun English Jr.</h4>
     <h5>BETA</h5>
