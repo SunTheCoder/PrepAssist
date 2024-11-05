@@ -3,12 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const groupSlice = createSlice({
     name: 'groups',
     initialState: {
-      groups: [],
+      groups: {},
     },
     reducers: {
         setGroup: (state, action) => {
-            let group = action.payload
-            state.groups.push(group);
+            const nextGroupNumber = Object.keys(state.groups).length + 1;
+      const newGroupKey = `group${nextGroupNumber}`;
+      
+      // Use action.payload as the value for the new group
+      state.groups[newGroupKey] = action.payload;
             
         }
     }
