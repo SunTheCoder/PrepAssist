@@ -240,11 +240,11 @@ const HomePage = () => {
           onChange={handleGeneralInputChange}
         />
         
-        <h3>Desired Gap</h3>
+        <h3>Gap</h3>
         <input
           type="number"
           name="desiredGap"
-          placeholder="Desired Gap"
+          placeholder="Gap"
           value={wall.desiredGap}
           onChange={handleGeneralInputChange}
         />
