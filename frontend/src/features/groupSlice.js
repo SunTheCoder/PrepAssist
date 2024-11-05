@@ -7,11 +7,11 @@ const groupSlice = createSlice({
     },
     reducers: {
         setGroup: (state, action) => {
-            const nextGroupNumber = Object.keys(state.groups).length + 1;
-      const newGroupKey = `group${nextGroupNumber}`;
-      
-      // Use action.payload as the value for the new group
-      state.groups[newGroupKey] = action.payload;
+          const nextGroupNumber = Object.keys(state.groups).length + 1;
+          const newGroupKey = `group${nextGroupNumber}`;
+          
+          // Use action.payload as the value for the new group
+          state.groups[newGroupKey] = action.payload;
             
         }
     }

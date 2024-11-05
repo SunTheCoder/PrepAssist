@@ -13,7 +13,7 @@ const arrangementSlice = createSlice({
              let currFrames = action.payload;
              let areas = []
              currFrames.forEach(frame => areas.push(frame.width * frame.height))
-            //  console.log('Areas:', areas)
+             //  console.log('Areas:', areas)
              areas.sort((a, b) => a-b);
 
              let evens = []
@@ -28,9 +28,7 @@ const arrangementSlice = createSlice({
 
              let merged = evens.concat(odds)
 
-
-
-            state.arrangements[newArrangementKey] = merged
+             state.arrangements[newArrangementKey] = merged
         }
     }
 
