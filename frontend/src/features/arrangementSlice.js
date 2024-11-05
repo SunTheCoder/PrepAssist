@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 const arrangementSlice = createSlice({ 
     name: 'Arrangement',
     initialState: {
-        arrangement: {},
+        arrangements: {},
     },
     reducers: {
         setArrangement: (state, action) => {
-            const nextArrangementNumber = Object.keys(state.arrangement).length + 1;
+            const nextArrangementNumber = Object.keys(state.arrangements).length + 1;
             const newArrangementKey = `arrangement${nextArrangementNumber}`;
 
              let currFrames = action.payload;
@@ -30,7 +30,7 @@ const arrangementSlice = createSlice({
 
 
 
-            state.arrangement[newArrangementKey] = merged
+            state.arrangements[newArrangementKey] = merged
         }
     }
 
