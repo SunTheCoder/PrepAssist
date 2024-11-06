@@ -202,6 +202,8 @@ const HomePage = () => {
       
       console.log('Calculation result:', result);
       setCalculationResult(result); // Set the result in the state
+    } else if (groups.length) {
+      
     }
   };
 

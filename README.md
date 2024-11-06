@@ -13,6 +13,7 @@ Gave myself the challenge of solving a problem in a day. Proud to say I got a wo
 
 ### In development...
 
+- Deleting, updating, changing arrangement of frames
 - Group logic and error handling/input checks
 - Modal(s) to display project details
 - Login/Signup handling
